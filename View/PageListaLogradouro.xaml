@@ -1,0 +1,64 @@
+﻿<Page x:Class="ProjetoAcademiaWPF.View.PageListaLogradouro"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:resources="clr-namespace:ProjetoAcademiaWPF.Properties"
+      xmlns:local="clr-namespace:ProjetoAcademiaWPF.View"
+      xmlns:uc="clr-namespace:ProjetoAcademiaWPF.View"
+      xmlns:viewModel="clr-namespace:ProjetoAcademiaWPF.ViewModel"
+      mc:Ignorable="d" 
+      d:DesignHeight="680" d:DesignWidth="800"
+      Title="Lista e Cadastro de Logradouros">
+
+    <Page.DataContext>
+        <viewModel:LogradouroViewModel/>
+    </Page.DataContext>
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <!-- Para o cabeçalho e controles de ação -->
+            <RowDefinition Height="*"/>
+            <!-- Para a lista de logradouros -->
+            <RowDefinition Height="Auto"/>
+            <!-- Para o cadastro -->
+        </Grid.RowDefinitions>
+
+        <!-- Header com botões para ações -->
+        <StackPanel Orientation="Horizontal" Margin="10">
+            <Button x:Name="buttonNovo" CommandParameter="{Binding}" Command="{Binding LogradouroAdicionarCommand}" Margin="5" Padding="5" Content="Novo" Background="#FF1A1A1A" Foreground="#FFFDFDFD" Width="100" Height="30" FontWeight="Bold" />
+            <Button x:Name="buttonEditar" CommandParameter="{Binding}" Command="{Binding LogradouroAtualizarCommand}" Margin="5" Padding="5" Content="Editar" Background="#FF1A1A1A" Foreground="#FFFDFDFD" Width="100" Height="30" FontWeight="Bold"/>
+            <Button x:Name="buttonExcluir" CommandParameter="{Binding}" Command="{Binding LogradouroRemoverCommand}" Margin="5" Padding="5" Content="Deletar" Background="#FF1A1A1A" Foreground="#FFFDFDFD" Width="100" Height="30" FontWeight="Bold"/>
+            <Button x:Name="buttonGerarPdf" Margin="3" Padding="3" CommandParameter="{Binding}" Command="{Binding GerarPdfCommand}"
+            Content="Gerar PDF" Background="#FF1A1A1A" Foreground="#FFFDFDFD" Width="130" Height="30" FontWeight="Bold"
+            BorderBrush="{x:Null}" HorizontalAlignment="Left" VerticalAlignment="Center" />
+        </StackPanel>
+
+        <!-- Lista de logradouros -->
+        <ScrollViewer Grid.Row="1" HorizontalScrollBarVisibility="Visible" VerticalScrollBarVisibility="Auto" Margin="0,0,0,10">
+            <DataGrid ItemsSource="{Binding Logradouros}" SelectedItem="{Binding SelectedLogradouro}" AutoGenerateColumns="False" IsReadOnly="False">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Binding="{Binding Id}" Header="Id" IsReadOnly="True"/>
+                    <DataGridTextColumn Header="Cep" Binding="{Binding Cep}"/>
+                    <DataGridTextColumn Header="Nome" Binding="{Binding Nome}"/>
+                    <DataGridTextColumn Header="Bairro" Binding="{Binding Bairro}"/>
+                    <DataGridTextColumn Header="Cidade" Binding="{Binding Cidade}"/>
+                    <DataGridTextColumn Header="UF" Binding="{Binding Uf}"/>
+                    <DataGridTextColumn Header="Pais" Binding="{Binding Pais}"/>
+                </DataGrid.Columns>
+            </DataGrid>
+        </ScrollViewer>
+
+        <!-- Cadastro de logradouro -->
+        <StackPanel Grid.Row="2" Orientation="Vertical" Margin="20">
+            <StackPanel Orientation="Horizontal" VerticalAlignment="Top" HorizontalAlignment="Center" Margin="0,10,0,0">
+                <Image Source="/icon4.png" Width="30" Height="30" Margin="0,0,5,0"/>
+                <Label Content="{x:Static resources:Idioma.tituloCadastrarLogradouro}" FontSize="16" Foreground="#FFFFFEFE" FontWeight="Bold"/>
+            </StackPanel>
+
+            <uc:UserControlLogradouro TabIndex="0"/>
+
+        </StackPanel>
+    </Grid>
+</Page>

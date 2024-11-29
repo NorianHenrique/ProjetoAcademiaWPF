@@ -1,0 +1,98 @@
+﻿<Window x:Class="ProjetoAcademiaWPF.View.WindowCadastroAvaliacao"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ProjetoAcademiaWPF.View"
+        xmlns:resources="clr-namespace:ProjetoAcademiaWPF.Properties"
+        mc:Ignorable="d"
+        Title="CadastroAvaliacao" Height="1550" Width="800">
+    <Grid Background="Black">
+        <ScrollViewer VerticalScrollBarVisibility="Auto">
+            <StackPanel Orientation="Vertical" Margin="20">
+                <StackPanel Orientation="Horizontal" VerticalAlignment="Top" HorizontalAlignment="Center" Margin="0,10,0,0">
+                    <!-- Caminho do ícone -->
+                    <Image Source="Imagens/icon.png" Width="30" Height="30" Margin="0,0,5,0">
+                    </Image>
+                    <!-- Caminho do ícone -->
+                    <Label Content="{x:Static resources:Idioma.tituloCadastrarAvaliacao}" FontSize="16" Foreground="#FFFFFEFE" FontWeight="Bold" Width="190"/>
+                    
+                </StackPanel>
+
+                <Label Content="{x:Static resources:Idioma.labelID}" Foreground="#FFFBF7F7" FontWeight="Bold"/>
+                <TextBox IsTabStop="False" x:Name="txtIDAvaliacao" Width="760" Margin="0,0,0,10" IsReadOnly="True"/>
+                <!-- ID somente leitura -->
+
+                <Label Content="{x:Static resources:Idioma.labelIDAluno}" Foreground="#FFFBF7F7" FontWeight="Bold"/>
+                <TextBox TabIndex="0" GotFocus="Box_GotFocus" LostFocus="Box_LostFocus" Name="txtIdAluno" Width="760" Margin="0,0,0,10"/>
+
+                <Label Content="{x:Static resources:Idioma.labelIDInstrutor}" Foreground="#FFFBF7F7" FontWeight="Bold"/>
+                <TextBox TabIndex="1" GotFocus="Box_GotFocus" LostFocus="Box_LostFocus" Name="txtIdInstrutor" Width="760" Margin="0,0,0,10"/>
+
+                <Label Content="{x:Static resources:Idioma.labelDataHora}" Foreground="#FFFBF7F7" FontWeight="Bold"/>
+                <DatePicker TabIndex="2" Name="dpDataHora" Width="760" Margin="0,0,0,10"/>
+                <TextBox TextChanged="txtDataHora_TextChanged" TabIndex="3" GotFocus="Box_GotFocus" LostFocus="Box_LostFocus" Name="txtHora" Width="760" Margin="0,0,0,10"/>
+
+                <Label Content="{x:Static resources:Idioma.labelPeso}" Foreground="#FFFBF7F7" FontWeight="Bold"/>
+                <TextBox TextChanged="txtPeso_TextChanged" TabIndex="4" GotFocus="Box_GotFocus" LostFocus="Box_LostFocus" Name="txtPeso" Width="760" Margin="0,0,0,10"/>
+
+                <Label Content="{x:Static resources:Idioma.labelAltura}" Foreground="#FFFBF7F7" FontWeight="Bold"/>
+                <TextBox  TextChanged="txtAltura_TextChanged" TabIndex="5" GotFocus="Box_GotFocus" LostFocus="Box_LostFocus" Name="txtAltura" Width="760" Margin="0,0,0,10"/>
+
+                <Label Content="{x:Static resources:Idioma.labelTorax}" Foreground="#FFFBF7F7" FontWeight="Bold"/>
+                <TextBox TabIndex="6" GotFocus="Box_GotFocus" LostFocus="Box_LostFocus" Name="txtTorax" Width="760" Margin="0,0,0,10"/>
+
+                <Label Content="{x:Static resources:Idioma.labelCintura}" Foreground="#FFFBF7F7" FontWeight="Bold"/>
+                <TextBox TabIndex="7" GotFocus="Box_GotFocus" LostFocus="Box_LostFocus" Name="txtCintura" Width="760" Margin="0,0,0,10"/>
+
+                <Label Content="{x:Static resources:Idioma.labelQuadril}" Foreground="#FFFBF7F7" FontWeight="Bold"/>
+                <TextBox TabIndex="8" GotFocus="Box_GotFocus" LostFocus="Box_LostFocus" Name="txtQuadril" Width="760" Margin="0,0,0,10"/>
+
+                <Label Content="{x:Static resources:Idioma.labelAntebracoD}" Foreground="#FFFBF7F7" FontWeight="Bold"/>
+                <TextBox TabIndex="9" GotFocus="Box_GotFocus" LostFocus="Box_LostFocus" Name="txtAntebracoDir" Width="760" Margin="0,0,0,10"/>
+
+                <Label Content="{x:Static resources:Idioma.labelAntebracoE}" Foreground="#FFFBF7F7" FontWeight="Bold"/>
+                <TextBox TabIndex="10" GotFocus="Box_GotFocus" LostFocus="Box_LostFocus" Name="txtAntebracoEsq" Width="760" Margin="0,0,0,10"/>
+
+                <Label Content="{x:Static resources:Idioma.labelBicepsD}" Foreground="#FFFBF7F7" FontWeight="Bold"/>
+                <TextBox TabIndex="11" GotFocus="Box_GotFocus" LostFocus="Box_LostFocus" Name="txtBicepsDir" Width="760" Margin="0,0,0,10"/>
+
+                <Label Content="{x:Static resources:Idioma.labelBicepsE}" FontWeight="Bold" Foreground="#FFFBF7F7"/>
+                <TextBox TabIndex="12" GotFocus="Box_GotFocus" LostFocus="Box_LostFocus" Name="txtBicepsEsq" Width="760" Margin="0,0,0,10"/>
+
+                <Label Content="{x:Static resources:Idioma.labelCoxaD}" Foreground="#FFFBF7F7" FontWeight="Bold"/>
+                <TextBox TabIndex="13" GotFocus="Box_GotFocus" LostFocus="Box_LostFocus" Name="txtCoxaDir" Width="760" Margin="0,0,0,10"/>
+
+                <Label Content="{x:Static resources:Idioma.labelCoxaE}" Foreground="#FFFBF7F7" FontWeight="Bold"/>
+                <TextBox TabIndex="14" GotFocus="Box_GotFocus" LostFocus="Box_LostFocus" Name="txtCoxaEsq" Width="760" Margin="0,0,0,10"/>
+
+                <Label Content="{x:Static resources:Idioma.labelPanturrilhaD}" Foreground="#FFFBF7F7" FontWeight="Bold"/>
+                <TextBox TabIndex="15" GotFocus="Box_GotFocus" LostFocus="Box_LostFocus" Name="txtPanturrilhaDir" Width="760" Margin="0,0,0,10"/>
+
+                <Label Content="{x:Static resources:Idioma.labelPanturrilhaE}" Foreground="#FFFBF7F7" FontWeight="Bold"/>
+                <TextBox TabIndex="16" GotFocus="Box_GotFocus" LostFocus="Box_LostFocus" Name="txtPanturrilhaEsq" Width="760" Margin="0,0,0,10"/>
+
+                <Label Content="{x:Static resources:Idioma.labelMassaMagra}" Foreground="#FFFBF7F7" FontWeight="Bold"/>
+                <TextBox TabIndex="17" GotFocus="Box_GotFocus" LostFocus="Box_LostFocus" Name="txtMassaMagra" Width="760" Margin="0,0,0,10"/>
+
+                <Label Content="{x:Static resources:Idioma.labelMassaGorda}" Foreground="#FFFBF7F7" FontWeight="Bold"/>
+                <TextBox TabIndex="18" GotFocus="Box_GotFocus" LostFocus="Box_LostFocus" Name="txtMassaGorda" Width="760" Margin="0,0,0,10"/>
+
+                <Label Content="{x:Static resources:Idioma.labelPercentualGordura}" Foreground="#FFFBF7F7" FontWeight="Bold"/>
+                <TextBox TabIndex="19" GotFocus="Box_GotFocus" LostFocus="Box_LostFocus" Name="txtPercentualGordura" Width="760" Margin="0,0,0,10"/>
+
+                <Label Content="{x:Static resources:Idioma.labelIMC}" Foreground="#FFFBF7F7" FontWeight="Bold"/>
+                <TextBox TabIndex="20" GotFocus="Box_GotFocus" LostFocus="Box_LostFocus" Name="txtIMC" Width="760" Margin="0,0,0,10" IsReadOnly="True"/>
+
+                <Label Content="{x:Static resources:Idioma.labelPesoIdeal}" Foreground="#FFFBF7F7" FontWeight="Bold"/>
+                <TextBox TabIndex="21" GotFocus="Box_GotFocus" LostFocus="Box_LostFocus" Name="txtPesoIdeal" Width="760" Margin="0,0,0,10"/>
+
+                <Label Content="{x:Static resources:Idioma.labelObservacoes}" Foreground="#FFFBF7F7" FontWeight="Bold"/>
+                <TextBox TabIndex="22" GotFocus="Box_GotFocus" LostFocus="Box_LostFocus" Name="txtObservacoes" Width="760" Margin="0,0,0,10" AcceptsReturn="True" Height="100"/>
+
+                <Button TabIndex="23" Name="btnSalvar" Content="{x:Static resources:Idioma.txtSalvar}" Margin="0,20,0,0" Foreground="#FFFBF7F7" FontSize="14" FontWeight="Bold" Height="26" Background="#FF236307"/>
+                <Button TabIndex="24" Name="btnCancelar" Content="{x:Static resources:Idioma.txtCancelar}" Click="btnCancelar_Click" Margin="0,20,0,0" Foreground="#FFFBF7F7" Height="26" FontWeight="Bold" FontSize="14" Background="#FFF10808"/>
+            </StackPanel>
+        </ScrollViewer>
+    </Grid>
+</Window>

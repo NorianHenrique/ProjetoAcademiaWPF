@@ -1,0 +1,81 @@
+﻿<Window x:Class="ProjetoAcademiaWPF.View.WindowCadastrarColaborador"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ProjetoAcademiaWPF.View"
+        xmlns:resources="clr-namespace:ProjetoAcademiaWPF.Properties"
+        xmlns:uc="clr-namespace:ProjetoAcademiaWPF.View"
+        xmlns:System="clr-namespace:System;assembly=System.Runtime"
+        xmlns:enums="clr-namespace:ProjetoAcademiaWPF"
+        mc:Ignorable="d"
+        Title="Cadastrar Colaborador" Height="1280" Width="800">
+
+    <Window.Resources>
+        <ObjectDataProvider MethodName="GetValues" ObjectType="{x:Type System:Enum}" x:Key="ColaboradorTipo">
+            <ObjectDataProvider.MethodParameters>
+                <x:Type TypeName="enums:EnumColaboradorTipo"/>
+            </ObjectDataProvider.MethodParameters>
+        </ObjectDataProvider>
+        <ObjectDataProvider MethodName="GetValues" ObjectType="{x:Type System:Enum}" x:Key="ColaboradorVinculo">
+            <ObjectDataProvider.MethodParameters>
+                <x:Type TypeName="enums:EnumColaboradorVinculo"/>
+            </ObjectDataProvider.MethodParameters>
+        </ObjectDataProvider>
+    </Window.Resources>
+    
+    <Grid Background="Black">
+        <ScrollViewer VerticalScrollBarVisibility="Auto">
+            <StackPanel Orientation="Vertical" Margin="20">
+            <StackPanel Orientation="Horizontal" VerticalAlignment="Top" HorizontalAlignment="Center" Margin="0,10,0,0">
+                <Image Source="/icon5.png" Width="30" Height="30" Margin="0,0,5,0"/>
+                <Label Content="{x:Static resources:Idioma.tituloCadastrarColaborador}" FontSize="16" Foreground="#FFFFFEFE" FontWeight="Bold"/>
+            </StackPanel>
+
+            <Label Content="{x:Static resources:Idioma.labelID}" Foreground="White" FontWeight="Bold"/>
+            <TextBox Text="{Binding Id}" IsEnabled="False" IsTabStop="False" x:Name="txtIDColaborador" Width="760" Margin="0,0,0,10" IsReadOnly="True"/>
+            <!-- ID somente leitura -->
+
+            <Label Content="{x:Static resources:Idioma.labelNome}" Foreground="White" FontWeight="Bold"/>
+            <TextBox Text="{Binding Nome}" GotFocus="Box_GotFocus" LostFocus="Box_LostFocus" TabIndex="0" Name="txtNome" Width="760" Margin="0,0,0,10"/>
+
+            <Label Content="{x:Static resources:Idioma.labelCPF}" Foreground="White" FontWeight="Bold"/>
+            <TextBox Text="{Binding Cpf}" GotFocus="Box_GotFocus" LostFocus="Box_LostFocus" TabIndex="1" Name="txtCPF" Width="760" MaxLength="14" TextChanged="txtCpfColaborador_TextChanged" Margin="0,0,0,10"/>
+
+            <Label Content="{x:Static resources:Idioma.labelSenhaColaborador}" Foreground="White" FontWeight="Bold"/>
+            <PasswordBox Name="txtSenhaColaborador" PasswordChanged="PasswordBox_PasswordChanged" TabIndex="2" GotFocus="Box_GotFocus" LostFocus="Box_LostFocus" Width="760" Margin="0,0,0,10" />
+                
+            <Label Content="{x:Static resources:Idioma.labelTelefone}" Foreground="White" FontWeight="Bold"/>
+            <TextBox Text="{Binding Telefone}" GotFocus="Box_GotFocus" LostFocus="Box_LostFocus" TabIndex="3" Name="txtTelefone" Width="760"  Margin="0,0,0,10" TextChanged="TextBoxTelefone_TextChanged"/>
+
+            <Label Content="{x:Static resources:Idioma.labelEmail}" Foreground="White" FontWeight="Bold"/>
+            <TextBox Text="{Binding Email}" GotFocus="Box_GotFocus" LostFocus="Box_LostFocus" TabIndex="4" Name="txtEmail" Width="760" Margin="0,0,0,10"/>
+
+            <Label Content="{x:Static resources:Idioma.labelDataNascimento}"  Foreground="White" FontWeight="Bold"/>
+            <DatePicker SelectedDate="{Binding Nascimento, Mode=TwoWay}" Name="dpNascimento" Width="760" Margin="0,0,0,10" TabIndex="5"/>
+
+            <uc:UserControlLogradouro TabIndex="6"/>
+
+            <Label Content="{x:Static resources:Idioma.labelNumero}" FontWeight="Bold" Foreground="White"/>
+            <TextBox Text="{Binding Numero}" GotFocus="Box_GotFocus" LostFocus="Box_LostFocus" TabIndex="7" Name="txtNumero" Width="760" Margin="0,0,0,10" MaxLength="3"/>
+
+            <Label Content="{x:Static resources:Idioma.labelComplemento}" Foreground="White" FontWeight="Bold"/>
+            <TextBox Text="{Binding Complemento}" GotFocus="Box_GotFocus" LostFocus="Box_LostFocus" TabIndex="8" Name="txtComplemento" Width="760" Margin="0,0,0,10"/>
+
+            <Label Content="{x:Static resources:Idioma.labelDataAdmissao}" Foreground="White" FontWeight="Bold"/>
+            <DatePicker SelectedDate="{Binding Admissao, Mode=TwoWay}" Name="dpDataAdmissao" TabIndex="9" Width="760" Margin="0,0,0,10"/>
+
+            <Label Content="{x:Static resources:Idioma.labelTipo}" FontWeight="Bold" Foreground="White"/>
+            <ComboBox TabIndex="10" Name="cmbTipo" Width="760" Margin="0,0,0,10" ItemsSource="{Binding Source={StaticResource ColaboradorTipo}}" SelectedItem="{Binding Tipo}">
+            </ComboBox>
+
+            <Label Content="{x:Static resources:Idioma.labelVinculo}" Foreground="White" FontWeight="Bold"/>
+            <ComboBox TabIndex="11" Name="cmbVinculo" Width="760" Margin="0,0,0,10" ItemsSource="{Binding Source={StaticResource ColaboradorVinculo}}" SelectedItem="{Binding Vinculo}">
+            </ComboBox>
+
+             <Button TabIndex="12" IsDefault="True" Command="{Binding SalvarColaboradorCommand}" Name="btnSalvar" Content="{x:Static resources:Idioma.txtSalvar}" Margin="0,20,0,0" Background="#FF159803" Foreground="WhiteSmoke" Height="24" FontWeight="Bold" FontSize="14"/>
+            <Button TabIndex="13" IsCancel="True" Name="btnCancelar" Content="{x:Static resources:Idioma.txtCancelar}" Click="btnCancelar_Click" Margin="0,20,0,0" Foreground="#FFFBF7F7" Height="24" FontWeight="Bold" FontSize="14" Background="#FFF10808"/>
+        </StackPanel>
+        </ScrollViewer>
+    </Grid>
+</Window>

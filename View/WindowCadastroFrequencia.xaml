@@ -1,0 +1,40 @@
+﻿<Window x:Class="ProjetoAcademiaWPF.View.WindowCadastroFrequencia"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ProjetoAcademiaWPF.View"
+        xmlns:resources="clr-namespace:ProjetoAcademiaWPF.Properties"
+        mc:Ignorable="d"
+        Title="CadastroFrequencia" Height="550" Width="800">
+    <Grid Background="Black">
+        <StackPanel Orientation="Vertical" Margin="20">
+            <StackPanel Orientation="Horizontal" VerticalAlignment="Top" HorizontalAlignment="Center" Margin="0,10,0,0">
+                <!-- Caminho do ícone -->
+                <Image Source="/icon1.png" Width="30" Height="30" Margin="0,0,5,0"/>
+                <Label Content="{x:Static resources:Idioma.tituloCadastrarFrequencia}" FontSize="16" Foreground="#FFFFFEFE" FontWeight="Bold"/>
+            </StackPanel>
+
+            <Label Content="{x:Static resources:Idioma.labelID}" Foreground="#FFF1F1F1" FontWeight="Bold"/>
+            <TextBox IsTabStop="False" Name="txtIDFrequncia" Width="760" Margin="0,0,0,10" IsReadOnly="True"/>
+            <!-- ID somente leitura -->
+
+            <Label Content="{x:Static resources:Idioma.labelIDAluno}" Foreground="#FFF1F1F1" FontWeight="Bold"/>
+            <TextBox GotFocus="Box_GotFocus" LostFocus="Box_LostFocus" TabIndex="0" Name="txtIdAluno" Width="760" Margin="0,0,0,10"/>
+
+            <Label Content="{x:Static resources:Idioma.labelCPFAluno}" Foreground="#FFF1F1F1" FontWeight="Bold"/>
+            <TextBox GotFocus="Box_GotFocus" LostFocus="Box_LostFocus" TabIndex="1" Name="txtCpfAluno" Width="760" Margin="0,0,0,10" MaxLength="14" TextChanged="txtCpfColaborador_TextChanged" />
+
+            <Label Content="{x:Static resources:Idioma.labelEntrada}" Foreground="#FFF1F1F1" FontWeight="Bold"/>
+            <DatePicker TabIndex="2" Name="dpEntrada" Width="760" Margin="0,0,0,10"/>
+            <TextBox TextChanged="txtHoraEntrada_TextChanged" TabIndex="3" GotFocus="Box_GotFocus" LostFocus="Box_LostFocus" Name="txtHoraEntrada" Width="760" Margin="0,0,0,10" />
+
+            <Label Content="{x:Static resources:Idioma.labelSaida}" Foreground="#FFF1F1F1" FontWeight="Bold"/>
+            <DatePicker TabIndex="4" Name="dpSaida" Width="760" Margin="0,0,0,10"/>
+            <TextBox TextChanged="txtHoraSaida_TextChanged" TabIndex="5" GotFocus="Box_GotFocus" LostFocus="Box_LostFocus" Name="txtHoraSaida" Width="760" Margin="0,0,0,10" />
+
+            <Button TabIndex="6" Name="btnSalvar" Content="{x:Static resources:Idioma.txtSalvar}" Height="26" Margin="0,20,0,0" Foreground="#FFF1F1F1" FontSize="14" FontWeight="Bold" Background="#FF308403"/>
+            <Button TabIndex="7" Name="btnCancelar" Content="{x:Static resources:Idioma.txtCancelar}" Height="26" Click="btnCancelar_Click" Margin="0,20,0,0" FontWeight="Bold" FontSize="14" Foreground="#FFF1F1F1" Background="#FFBF0505"/>
+        </StackPanel>
+    </Grid>
+</Window>

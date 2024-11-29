@@ -1,0 +1,87 @@
+﻿<Window x:Class="ProjetoAcademiaWPF.View.WindowCadastrarMatricula"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ProjetoAcademiaWPF.View"
+        xmlns:uc="clr-namespace:ProjetoAcademiaWPF.View"
+        xmlns:resources="clr-namespace:ProjetoAcademiaWPF.Properties"
+        xmlns:System="clr-namespace:System;assembly=System.Runtime"
+        xmlns:enums="clr-namespace:ProjetoAcademiaWPF"
+        mc:Ignorable="d"
+        Title="WindowCadastrarMatricula" Height="1000" Width="800">
+
+    <Window.Resources>
+        <ObjectDataProvider MethodName="GetValues" ObjectType="{x:Type System:Enum}" x:Key="MatriculaPlano">
+            <ObjectDataProvider.MethodParameters>
+                <x:Type TypeName="enums:EnumMatriculaPlano"/>
+            </ObjectDataProvider.MethodParameters>
+        </ObjectDataProvider>
+        <ObjectDataProvider MethodName="GetValues" ObjectType="{x:Type System:Enum}" x:Key="MatriculaRestricaoMedica">
+            <ObjectDataProvider.MethodParameters>
+                <x:Type TypeName="enums:EnumMatriculaRestricaoMedica"/>
+            </ObjectDataProvider.MethodParameters>
+        </ObjectDataProvider>
+        <local:ByteArrayToImageConverter x:Key="ByteArrayToImageConverter"/>
+    </Window.Resources>
+
+
+    <Grid Background="Black">
+        <ScrollViewer VerticalScrollBarVisibility="Auto">
+        <StackPanel Orientation="Vertical" Margin="20">
+            <StackPanel Orientation="Horizontal" VerticalAlignment="Top" HorizontalAlignment="Center" Margin="0,10,0,0">
+                <Image Source="/icon6.png" Width="30" Height="30" Margin="0,0,5,0"/>
+                <!-- Caminho do ícone -->
+                <Label Content="{x:Static resources:Idioma.tituloCadastrarMatricula}" FontSize="16" Foreground="#FFFFFEFE" FontWeight="Bold"/>
+            </StackPanel>
+            <StackPanel Margin="20">
+                <Label Content="{x:Static resources:Idioma.labelID}" Foreground="#FFFFFEFE" FontWeight="Bold" />
+                <TextBox Text="{Binding Id}" IsEnabled="False" IsTabStop="False" x:Name="txtIDMatricula" IsReadOnly="True" Margin="0,0,0,10"/>
+
+                <Label Content="CPF do Aluno" Foreground="#FFF5F3F3" FontWeight="Bold"/>
+                <TextBox Text="{Binding Cpf, UpdateSourceTrigger=PropertyChanged}" TabIndex="0" Margin="0,0,0,10"/>
+                <Button Command="{Binding FiltrarAlunoCommand}" Content="Buscar Aluno" Margin="0,0,0,10"/>
+
+                <Label Content="{x:Static resources:Idioma.labelIDAluno}" Foreground="#FFF5F3F3" FontWeight="Bold"/>
+                <TextBox Text="{Binding IdAluno}" TextChanged="txtIdAluno_TextChanged" TabIndex="1" GotFocus="Box_GotFocus" LostFocus="Box_LostFocus" x:Name="txtIdAluno" Margin="0,0,0,10"/>
+
+                <Label Content="CPF do Colaborador" Foreground="#FFF5F3F3" FontWeight="Bold"/>
+                <TextBox Text="{Binding CpfColaborador, UpdateSourceTrigger=PropertyChanged}" TabIndex="2" Margin="0,0,0,10"/>
+                <Button Command="{Binding FiltrarColaboradorCommand}" Content="Buscar Colaborador" Margin="0,0,0,10"/>
+
+                <Label Content="{x:Static resources:Idioma.labelIDAtendente}" Foreground="#FFF5F3F3" FontWeight="Bold"/>
+                <TextBox Text="{Binding IdAtendente}" TextChanged="txtIdAtendente_TextChanged" TabIndex="3" GotFocus="Box_GotFocus" LostFocus="Box_LostFocus" x:Name="txtIdAtendente" Margin="0,0,0,10"/>
+
+                <Label Content="{x:Static resources:Idioma.labelPlano}" Foreground="#FFF5F3F3" FontWeight="Bold"/>
+                <ComboBox ItemsSource="{Binding Source={StaticResource MatriculaPlano}}" SelectedItem="{Binding Plano}" TabIndex="4" GotFocus="Box_GotFocus" LostFocus="Box_LostFocus" x:Name="cmbPlano" Margin="0,0,0,10">
+                </ComboBox>
+
+                <Label Content="{x:Static resources:Idioma.labelDataInicio}" FontSize="12" FontWeight="Bold" Foreground="#FFF5F3F3"/>
+                <DatePicker SelectedDate="{Binding DaraInicio,Mode=TwoWay}" TabIndex="5" x:Name="dpDataInicio" Margin="0,0,0,10"/>
+
+                <Label Content="{x:Static resources:Idioma.labelDataFim}" Foreground="#FFF5F3F3" FontWeight="Bold"/>
+                <DatePicker SelectedDate="{Binding DataFim, Mode=TwoWay}" TabIndex="6" x:Name="dpFim" Margin="0,0,0,10"/>
+
+                <Label Content="{x:Static resources:Idioma.labelRestricaoMedica}" FontWeight="Bold" Foreground="#FFF5F3F3"/>
+                <ComboBox ItemsSource="{Binding Source={StaticResource MatriculaRestricaoMedica}}" SelectedItem="{Binding RestricaoMedica}" TabIndex="7" GotFocus="Box_GotFocus" LostFocus="Box_LostFocus" x:Name="cmbRestricaoMedica" Margin="0,0,0,10">
+                </ComboBox>
+
+                <Label Content="{x:Static resources:Idioma.labelObservacoesRestricao}" Foreground="#FFF5F3F3" FontWeight="Bold"/>
+                <TextBox Text="{Binding ObsRestricao}" TabIndex="8" GotFocus="Box_GotFocus" LostFocus="Box_LostFocus" x:Name="txtObsRestricao" Height="60" Margin="0,0,0,10" AcceptsReturn="True"/>
+
+                <Label Content="{x:Static resources:Idioma.labelLaudoMedico}" FontWeight="Bold" Foreground="#FFF5F3F3"/>
+                <StackPanel Orientation="Horizontal" Margin="0,0,0,10">
+                    <Button TabIndex="9" Command="{Binding SelecionarLaudoCommand}" Name="btnUploadLaudo" Content="Upload Laudo" />
+                    <Image Source="{Binding LaudoMedico, Converter={StaticResource ByteArrayToImageConverter}}" Name="imgLaudoMedico" Width="100" Height="100" Margin="10,0,0,0" Visibility="Collapsed"/>
+                </StackPanel>
+
+                <Label Content="{x:Static resources:Idioma.labelObjetivo}" Foreground="#FFF5F3F3" FontWeight="Bold"/>
+                <TextBox Text="{Binding Objetivo}" TabIndex="10" GotFocus="Box_GotFocus" LostFocus="Box_LostFocus" x:Name="txtObjetivo" Height="60" Margin="0,0,0,10" AcceptsReturn="True"/>
+
+                <Button TabIndex="11" x:Name="btnSalvar" IsDefault="True" Command="{Binding SalvarMatriculaCommand}" Content="{x:Static resources:Idioma.txtSalvar}" Margin="0,10,0,0" FontWeight="Bold" Background="#FF1A6300" Foreground="#FFF5F3F3" Height="32" FontSize="14"/>
+            </StackPanel>
+        </StackPanel>
+        </ScrollViewer>
+    </Grid>
+    
+</Window>

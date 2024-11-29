@@ -1,0 +1,58 @@
+﻿<Window x:Class="ProjetoAcademiaWPF.View.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ProjetoAcademiaWPF.View"
+        xmlns:resources="clr-namespace:ProjetoAcademiaWPF.Properties"
+        xmlns:uc="clr-namespace:ProjetoAcademiaWPF.View"
+        mc:Ignorable="d"
+        Title="Academia" Height="700" Width="850">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="150" />
+            <!-- Largura da sidebar -->
+            <ColumnDefinition Width="*" />
+            <!-- Conteúdo -->
+        </Grid.ColumnDefinitions>
+
+        <Menu Background="#FF252323" Grid.Column="0">
+            <StackPanel Height="670" Width="120">
+                <TextBlock x:Name="txtColaboradorLogado" Text="Bem-vindo!" FontSize="10" FontWeight="Bold" Foreground="#FFFFF7F7" RenderTransformOrigin="0.858,0.7" HorizontalAlignment="Center" />
+                <Button x:Name="ButtonHome" Content="{x:Static resources:Idioma.txtHome}" Height="25" Margin="20,10" Click="ButtonHome_Click" />
+                <Button x:Name="ButtonLogradouro" Content="{x:Static resources:Idioma.txtLogradouro}" Height="25" Margin="20,10" Click="ButtonLogradouro_Click"/>
+                <Button x:Name="ButtonAluno" Content="{x:Static resources:Idioma.txtAluno}" Height="25" Margin="20,10" Click="ButtonAluno_Click"/>
+                <Button x:Name="ButtonColaborador" Content="{x:Static resources:Idioma.txtColaborador}" Height="25" Margin="20,10" Click="ButtonColaborador_Click"/>
+                <Button x:Name="ButtonSenha" Content="{x:Static resources:Idioma.txtSenha}" Height="25" Margin="20,10" Click="ButtonSenha_Click"/>
+                <Button x:Name="ButtonMatricula" Content="{x:Static resources:Idioma.textMatricula}" Height="25" Margin="20,10" Click="ButtonMatricula_Click"/>
+                <Button x:Name="ButtonAvaliacao" Content="{x:Static resources:Idioma.txtAvaliacao}" Height="25" Margin="20,10" Click="ButtonAvaliacao_Click"/>
+                <Button x:Name="ButtonFrequencia" Content="{x:Static resources:Idioma.textFrequencia}" Height="25" Margin="20,10" Click="ButtonFrequencia_Click"/>
+                <Button x:Name="ButtonAulas" Content="{x:Static resources:Idioma.txtAulas}" Height="25" Margin="20,10" Click="ButtonAulas_Click"/>
+                <Button x:Name="ButtonTreinos" Content="{x:Static resources:Idioma.txtTreinos}" Height="25" Margin="20,10" Click="ButtonTreinos_Click"/>
+                <Button x:Name="ButtonLoginLoggout" Content="{x:Static resources:Idioma.txtLoginLoggout}" Height="25" Margin="20,10" Click="ButtonLoginLoggout_Click"/>
+                <Button x:Name="ButtonConfig" Content="{x:Static resources:Idioma.txtConfiguracoes}" Height="25" Margin="20,10" RenderTransformOrigin="0.546,-1.523" Width="79" Click="ButtonConfig_Click"/>
+            </StackPanel>
+
+        </Menu>
+        <ScrollViewer Grid.Column="1">
+            <ScrollViewer.ContextMenu>
+                <ContextMenu x:Name="contextMenu">
+                    <MenuItem Header="{x:Static resources:Idioma.txtLogradouro}" Click="ButtonLogradouro_Click"/>
+                    <MenuItem Header="{x:Static resources:Idioma.txtAluno}">
+                        <MenuItem Header="{x:Static resources:Idioma.txtSenha}" Click="ButtonSenha_Click"/>
+                        <MenuItem Header="{x:Static resources:Idioma.textFrequencia}" Click="ButtonFrequencia_Click"/>
+                        <MenuItem Header="{x:Static resources:Idioma.txtLoginLoggout}" Click="ButtonLoginLoggout_Click"/>
+                    </MenuItem>
+                    <MenuItem Header="{x:Static resources:Idioma.txtColaborador}" Click="ButtonColaborador_Click"/>
+                    <MenuItem Header="{x:Static resources:Idioma.textMatricula}" Click="ButtonMatricula_Click"/>
+                    <MenuItem Header="{x:Static resources:Idioma.txtAvaliacao}" Click="ButtonAvaliacao_Click"/>
+                    <MenuItem Header="{x:Static resources:Idioma.txtAulas}"/>
+                    <MenuItem Header="{x:Static resources:Idioma.txtTreinos}"/>
+                    <MenuItem Header="{x:Static resources:Idioma.txtConfiguracoes}" Click="ButtonConfig_Click"/>
+                </ContextMenu>
+            </ScrollViewer.ContextMenu>
+            <Frame x:Name="MainFrame" Background="Black" />
+
+        </ScrollViewer>
+    </Grid>
+</Window>
